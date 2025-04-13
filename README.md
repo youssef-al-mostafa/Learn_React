@@ -48,9 +48,7 @@ While this is primarily a personal learning repository, suggestions for improvem
 ## 🛠️ Libraries & Tools Used
 This repository demonstrates the use of various libraries and tools in the React ecosystem. Below is the current tech stack, which will be updated as new libraries are incorporated:
 
-React 18.x
-TypeScript
-[TanStack Query](https://tanstack.com/start/latest)
+-[TanStack Query](https://tanstack.com/start/latest)
 
 Note: This section will be updated as new libraries and tools are introduced in the repository.
 
