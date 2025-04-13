@@ -21,7 +21,10 @@ This repository serves as both a personal learning tool and a resource for other
    
 3. **Compare Changes**: Use `git diff <previous-commit>..<current-commit>` to see exactly what changed between lessons.
 
-4. **Read Commit Messages**: Each commit includes a detailed message explaining the concept and implementation details.
+4. **Read Lesson Notes**: Each commit in this repository is accompanied by a `LESSON_NOTES.md` file that summarizes the concept being taught in that commit. These notes include:
+- Clear explanation of the concept
+- Key points to remember
+- Further resources
 
 ## Who This Repository Is For
 
