@@ -13,7 +13,18 @@ const useTodos = () => {
         return response.data;
     };
 
-    return useQuery<Todo[], Error>(['todos'], fetchTodos);
+    return useQuery<Todo[], Error>(
+        ['todos'], 
+        fetchTodos,
+        {
+            retry: 3,
+            cacheTime: 300_000, // 5 min 
+            staleTime: 10 * 1000, // 10 sec
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: false,
+            refetchOnMount: false
+        }
+    );
 };
 
 export default useTodos;
