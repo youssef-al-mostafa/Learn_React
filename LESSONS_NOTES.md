@@ -1,18 +1,35 @@
 # Lesson Notes
 
-#### Concept: Customizing React Query Default Options
-React Query allows you to customize its default behavior to suit your application's needs. In this lesson, we explored how to modify default options in `main.tsx`.
+#### Concept: Implementing Paginated Queries with React Query
+This lesson demonstrates how to implement paginated data fetching using React Query with proper UX considerations.
 
 Key points:
-- **Retry Behavior**: Configured React Query to retry failed requests up to 3 times before throwing an error. This ensures resilience in case of temporary network issues.
-- **Cache Time**: Controls how long inactive queries are stored in memory before being garbage collected. This helps manage memory usage effectively.
-- **Stale Time**: Determines how long data is considered fresh. Increasing stale time reduces unnecessary network requests and improves performance by:
-  - Preventing automatic refetches when the component remounts, the window regains focus, or the network reconnects.
-  - Keeping data fresh for a longer duration, reducing API load.
+- Created a query object pattern in `usePosts` that accepts pagination parameters
+- Used the query object as part of the query key `['posts', query]` to ensure proper cache invalidation
+- Added `keepPreviousData: true` to maintain the previous data while fetching new pages
+- Implemented pagination controls in `PostList` with Previous/Next buttons
+- Used query parameters to handle server-side pagination efficiently
+
+Code example:
+```typescript
+interface PostQuery {
+  page: number;
+  pageSize: number;
+}
+
+const usePosts = (query: PostQuery) => {
+  return useQuery({
+    queryKey: ['posts', query],
+    keepPreviousData: true,
+    queryFn: () => // ... fetch logic
+  });
+};
+```
 
 Next steps:
-- Use these configurations in real-world scenarios to understand their impact on performance and user experience.
+- Add loading indicators to pagination buttons for better feedback
+- Implement infinite scrolling as an alternative pagination approach
+- Consider adding total count to implement page numbers
 
 *If you find this repository helpful, please leave a star! ⭐*
 *Previous lessons can be found in the commit history*
-
