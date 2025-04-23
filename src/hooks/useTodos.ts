@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { CASH_KEY_TODOS } from '../react-query/constans';
 
 export interface Todo {
     id: number;
@@ -15,7 +16,7 @@ const useTodos = () => {
     };
 
     return useQuery<Todo[], Error>(
-        ['todos'], 
+        CASH_KEY_TODOS, 
         fetchTodos,
         {
             retry: 3,

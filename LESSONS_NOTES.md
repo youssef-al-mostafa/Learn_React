@@ -1,41 +1,26 @@
 # Lesson Notes
 
-#### Concept: Implementing Mutations with React Query
-This lesson covers how to implement data mutations (create, update, delete) using React Query's `useMutation` hook.
+#### Concept: Custom Hook Extraction and Error Handling
+This lesson demonstrates how to properly separate concerns by extracting mutation logic into custom hooks and implementing proper error handling.
 
 Key points:
-- Used `useMutation` to handle form submissions in [`TodoForm`](src/react-query/TodoForm.tsx)
-- Implemented proper form handling with `preventDefault()` to avoid page refreshes
-- Utilized `useRef` for form input management
-- Applied optimistic updates using `queryClient.setQueryData`
+- Extracted mutation logic from [`TodoForm`](src/react-query/TodoForm.tsx) into a dedicated [`useAddTodo`](src/hooks/useAddTodo.ts) hook
+- Implemented error handling with proper user feedback
+- Separated UI concerns from data management logic
+
+#### Concept: Constants Management and Type Safety
+This lesson covers how to improve code maintainability and reduce errors through proper constants management.
+
+Key points:
+- Created a dedicated `constants.ts` file to centralize query keys
+- Eliminated potential typo errors in query keys across components
 
 Code example:
 ```typescript
-const addTodo = useMutation({
-  mutationFn: (todo: Todo) => 
-    axios.post<Todo>('https://jsonplaceholder.typicode.com/todos', todo),
-  onSuccess: (savedTodo) => {
-    queryClient.setQueryData<Todo[]>(['todos'], 
-      todos => [savedTodo, ...(todos || [])])
-  }
-});
+// constants.ts
+export const CACHE_KEY_TODOS = 'todos' as const;
+export const CACHE_KEY_POSTS = 'posts' as const;
 ```
-
-#### Concept: Managing Cache Updates
-Exploring different strategies for updating the cache after mutations.
-
-Key points:
-- Used `QueryClient` to manage cache updates
-- Compared two approaches:
-  1. Cache invalidation with `invalidateQueries`
-  2. Direct cache updates with `setQueryData`
-- Implemented optimistic updates for better UX
-- Handled proper error rollback scenarios
-
-Next steps:
-- Implement loading and error states in the form
-- Add toast notifications for success/error feedback
-- Explore batch mutations for multiple items
 
 *If you find this repository helpful, please leave a star! ⭐*
 *Previous lessons can be found in the commit history*
